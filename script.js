@@ -14,6 +14,7 @@ function saveScore() {
 
   const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
   highScores.push({ name, score });
+  highScores.sort((a, b) => b.score - a.score); // Sort scores in descending order
 
   localStorage.setItem("highScores", JSON.stringify(highScores));
 
@@ -51,3 +52,8 @@ function showScores() {
     </table>
   `;
 }
+
+// Show scores on page load
+document.addEventListener("DOMContentLoaded", function() {
+  showScores();
+});
